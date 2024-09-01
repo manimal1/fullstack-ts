@@ -1,5 +1,5 @@
-import { builder } from "../../pothos/builder";
-import prisma from "../../prisma";
+import { builder } from "pothos/builder";
+import prisma from "prisma";
 
 // Define the User type based on Prisma model
 builder.prismaObject("User", {
