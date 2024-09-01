@@ -1,35 +1,10 @@
-import { PrismaClient } from "@prisma/client";
-import { ApolloServer, gql } from "apollo-server-express";
+import { ApolloServer } from "apollo-server-express";
 import express from "express";
-
-// Initialize Prisma Client
-const prisma = new PrismaClient();
-
-// Define GraphQL schema
-const typeDefs = gql`
-  type Query {
-    users: [User!]!
-  }
-
-  type User {
-    id: Int!
-    name: String!
-    email: String!
-  }
-`;
-
-// Define resolvers
-const resolvers = {
-  Query: {
-    users: async () => {
-      return await prisma.user.findMany();
-    },
-  },
-};
+import { schema } from "./src/schema";
 
 async function startServer() {
   // Initialize Apollo Server
-  const server = new ApolloServer({ typeDefs, resolvers });
+  const server = new ApolloServer({ schema });
 
   // Start Apollo Server
   await server.start();

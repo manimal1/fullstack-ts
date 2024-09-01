@@ -7,6 +7,13 @@ generator client {
   provider = "prisma-client-js"
 }
 
+// generated pothos types now found in the output file
+generator pothos {
+  provider = "prisma-pothos-types"
+  clientOutput = "@prisma/client"
+  output = "../pothos/pothos-types.ts"
+}
+
 model User {
   id    Int    @id @default(autoincrement())
   name  String
